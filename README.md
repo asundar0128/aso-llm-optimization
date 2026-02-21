@@ -1,4 +1,4 @@
-# IndependentStudy
+# Independent Study
 
 Evaluated complex datasets and embeddings for Neural Transformers Architecture with Large Language Models with advanced bioinformatics Python libraries like bioctfl and used multiple scoring metrics like AUC, ROC, and MCC
 
