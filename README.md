@@ -75,8 +75,6 @@ Few-shot prompting provides the model with a **small number of example sequences
 
 Below are diagrams illustrating **Zero-Shot vs Few-Shot predictions** for each pipeline using Galactica, LLaMA, and GPT models.
 
----
-
 ## PFRED
 
 ## Zero-Shot Predictions
@@ -106,8 +104,6 @@ Below are diagrams illustrating **Zero-Shot vs Few-Shot predictions** for each p
 
 *Figure 2: PFRED Few-Shot predictions across models (Galactica, LLaMA, GPT).  
 **Note:** Leverages example sequences to capture nuanced patterns and improve accuracy.*
-
----
 
 ## OpenASO
 
@@ -168,6 +164,33 @@ Below are diagrams illustrating **Zero-Shot vs Few-Shot predictions** for each p
 
 *Figure 6: ASOptimizer Few-Shot predictions across models (Galactica, LLaMA, GPT).  
 **Note:** Incorporates example ASO-efficacy mappings to refine predictions, reduce error, and improve alignment with experimental results.*
+
+## Sample Prompts and Inhibition Efficacy Scores
+
+Entry 12
+Prompt: [DNA_START]GCACAGAGTCGTAGCTGGCG[DNA_END]
+Target gene: Rattus mRNA for vascular type-1 angiotensin II receptor
+Inhibition efficacy score: 0.93
+
+Entry 35
+Prompt: [DNA_START]TGGGCGGCGCCCCTCCTCCT[DNA_END]
+Target gene: Homo sapiens RAF1 mRNA
+Inhibition efficacy score: 0.998
+
+Entry 67
+Prompt: [DNA_START]GTTACCTCCTCGTTTCTTCT[DNA_END]
+Target gene: Homo sapiens P-glycoprotein (PGY1) mRNA
+Inhibition efficacy score: 0.99
+
+Entry 105
+Prompt: [DNA_START]GTTGGAGTCGG[DNA_END]
+Target gene: Human ICAM-1 mRNA
+Inhibition efficacy score: 0.967
+
+Entry 181
+Prompt: [DNA_START]GAATTTTACGGACCC[DNA_END]
+Target gene: Homo sapiens VCAM1, transcript variant 1, mRNA
+Inhibition efficacy score: 0.993
 
 ## Dependencies
 
