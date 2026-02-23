@@ -71,10 +71,6 @@ Few-shot prompting provides the model with a **small number of example sequences
 
 > Across all pipelines, few-shot prompting consistently improves model performance by providing **task-specific context**, whereas zero-shot is faster and requires no prior labeled data.
 
-## Visual Examples
-
-Below are diagrams illustrating **Zero-Shot vs Few-Shot predictions** for each pipeline using Galactica, LLaMA, and GPT models.
-
 ## Sample Prompts and Inhibition Efficacy Scores
 
 Entry 12
