@@ -77,63 +77,97 @@ Below are diagrams illustrating **zero-shot vs few-shot predictions** for each p
 
 ## PFRED
 
+### Zero-Shot Predictions
+
 **Galactica**  
-**Zero-Shot**  
 ![Galactica PFRED Zero-Shot](images/galactica_pfred_zero.png)  
-**Few-Shot**  
+
+**LLaMA**  
+![LLaMA PFRED Zero-Shot](images/llama_pfred_zero.png)  
+
+**GPT**  
+![GPT PFRED Zero-Shot](images/gpt_pfred_zero.png)  
+
+*Figure 1: PFRED Zero-Shot predictions across models (Galactica, LLaMA, GPT).  
+**Note:** Zero-shot predictions are fast and require no examples, but may miss subtle sequence-context patterns.*
+
+### Few-Shot Predictions
+
+**Galactica**  
 ![Galactica PFRED Few-Shot](images/galactica_pfred_few.png)  
 
 **LLaMA**  
-**Zero-Shot**  
-![LLaMA PFRED Zero-Shot](images/llama_pfred_zero.png)  
-**Few-Shot**  
 ![LLaMA PFRED Few-Shot](images/llama_pfred_few.png)  
 
 **GPT**  
-**Zero-Shot**  
-![GPT PFRED Zero-Shot](images/gpt_pfred_zero.png)  
-**Few-Shot**  
 ![GPT PFRED Few-Shot](images/gpt_pfred_few.png)  
+
+*Figure 2: PFRED Few-Shot predictions across models (Galactica, LLaMA, GPT).  
+**Note:** Few-shot predictions leverage example sequences, capturing nuanced sequence relationships and improving accuracy.*
+
+---
 
 ## OpenASO
 
+### Zero-Shot Predictions
+
 **Galactica**  
-**Zero-Shot**  
 ![Galactica OpenASO Zero-Shot](images/galactica_openaso_zero.png)  
-**Few-Shot**  
+
+**LLaMA**  
+![LLaMA OpenASO Zero-Shot](images/llama_openaso_zero.png)  
+
+**GPT**  
+![GPT OpenASO Zero-Shot](images/gpt_openaso_zero.png)  
+
+*Figure 3: OpenASO Zero-Shot predictions across models (Galactica, LLaMA, GPT).  
+**Note:** Provides baseline optimization; suitable for rapid screening, but may miss context-specific sequence patterns.*
+
+### Few-Shot Predictions
+
+**Galactica**  
 ![Galactica OpenASO Few-Shot](images/galactica_openaso_few.png)  
 
 **LLaMA**  
-**Zero-Shot**  
-![LLaMA OpenASO Zero-Shot](images/llama_openaso_zero.png)  
-**Few-Shot**  
 ![LLaMA OpenASO Few-Shot](images/llama_openaso_few.png)  
 
 **GPT**  
-**Zero-Shot**  
-![GPT OpenASO Zero-Shot](images/gpt_openaso_zero.png)  
-**Few-Shot**  
 ![GPT OpenASO Few-Shot](images/gpt_openaso_few.png)  
 
-#### ASOptimizer
+*Figure 4: OpenASO Few-Shot predictions across models (Galactica, LLaMA, GPT).  
+**Note:** Few-shot examples provide contextual information, improving predicted efficacy and generating more reliable candidate ASOs.*
+
+---
+
+## ASOptimizer
+
+### Zero-Shot Predictions
 
 **Galactica**  
-**Zero-Shot**  
 ![Galactica ASOptimizer Zero-Shot](images/galactica_asoptimizer_zero.png)  
-**Few-Shot**  
+
+**LLaMA**  
+![LLaMA ASOptimizer Zero-Shot](images/llama_asoptimizer_zero.png)  
+
+**GPT**  
+![GPT ASOptimizer Zero-Shot](images/gpt_asoptimizer_zero.png)  
+
+*Figure 5: ASOptimizer Zero-Shot predictions across models (Galactica, LLaMA, GPT).  
+**Note:** Generates initial predictions quickly from SMILES or RNA sequences; variability may be higher without prior examples.*
+
+### Few-Shot Predictions
+
+**Galactica**  
 ![Galactica ASOptimizer Few-Shot](images/galactica_asoptimizer_few.png)  
 
 **LLaMA**  
-**Zero-Shot**  
-![LLaMA ASOptimizer Zero-Shot](images/llama_asoptimizer_zero.png)  
-**Few-Shot**  
 ![LLaMA ASOptimizer Few-Shot](images/llama_asoptimizer_few.png)  
 
 **GPT**  
-**Zero-Shot**  
-![GPT ASOptimizer Zero-Shot](images/gpt_asoptimizer_zero.png)  
-**Few-Shot**  
 ![GPT ASOptimizer Few-Shot](images/gpt_asoptimizer_few.png)  
+
+*Figure 6: ASOptimizer Few-Shot predictions across models (Galactica, LLaMA, GPT).  
+**Note:** Incorporates example ASO-efficacy mappings to refine predictions, reducing error and improving alignment with experimental expectations.*
 
 ## Dependencies
 
