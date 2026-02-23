@@ -2,29 +2,76 @@
 
 # Neural Transformer Architectures for Antisense Oligonucleotide (ASO) Efficacy Prediction
 
-This repository features research on optimizing **Antisense Oligonucleotide (ASO) efficacy** using **Large Language Models (LLMs)** and **Neural Transformer architectures**. By leveraging advanced bioinformatics libraries like **bioctfl**, this framework achieves **~50% higher optimization in ASO design** compared to baseline methods. The work is informed by **relevant bioinformatics and ASO research literature**, ensuring alignment with current standards in computational drug design.
+This repository contains an inference-ready computational pipeline for predicting the inhibition efficacy of novel antisense oligonucleotide (ASO) candidates using large language models (LLMs) and transformer-based architectures.
 
-## System Architecture
+This work accompanies the preprint:
 
-## Core Methodology
+Benchmarking Large Language Models for Predicting Therapeutic Antisense Oligonucleotide Efficacy
+bioRxiv DOI: https://doi.org/10.64898/2026.02.17.706455
 
-1. **Background Research**
-   - Conducted a comprehensive evaluation of Neural Transformer architectures for efficiency and accuracy in gene therapy and drug discovery pipelines.
-   - Surveyed relevant bioinformatics and ASO research literature to guide architecture selection.
+The system is designed to enable rapid computational triaging of ASO candidates prior to experimental validation, reducing the number of sequences requiring costly in-vitro screening.
 
-2. **Model Selection**
-   - Models evaluated: **LlaSMol, T0pp, Mistral-7B**.
-   - Models used in practice: **LLaMA2, GPT-3.5-Turbo, Galactica-6.7B** for their superior performance in biological sequence reasoning and ASO optimization tasks.
+## Problem Context
 
-3. **Optimization**
-   - Achieved significant improvements in **R²** and **RMSE** scores through **zero-shot** and **few-shot prompting** strategies.
-   - Optimizations guided by relevant bioinformatics principles to ensure predictive and experimental utility.
+Therapeutic antisense oligonucleotide (ASO) development requires evaluation of sequence-level inhibition efficacy prior to downstream experimental validation. Traditional computational screening methods rely on rule-based heuristics or feature-engineered models that may not capture complex sequence-structure relationships.
 
-## Performance & Evaluation
+This repository implements an LLM-based inference pipeline capable of predicting ASO efficacy directly from nucleotide sequence input using zero-shot and few-shot prompting strategies.
 
-- **Efficacy Tracking:** AUC, ROC, MCC (Matthews Correlation Coefficient) to assess classification performance.
-- **Regression Accuracy:** RMSE, R² for sequence-level prediction accuracy.
-- Results are documented in a formal publication with **multi-metric evaluation** for robust performance benchmarking.
+## Supported Model Architectures
+
+Models evaluated in this pipeline include:
+
+- LLaMA-2-7B
+- GPT-3.5-Turbo
+- Galactica-6.7B
+- ChemBERTa
+- MolFormer
+
+## Datasets
+
+The following ASO datasets were used for model benchmarking:
+
+- PFRED
+- openASO
+- ASOptimizer
+
+Sequence-efficacy mappings from these datasets are used to support few-shot prompting during inference.
+
+## Pipeline Overview
+
+The ASO-LLM pipeline performs the following steps:
+
+- Accepts nucleotide sequence input in standard ASO format
+- Constructs prompt-based inference tasks
+- Performs zero-shot or few-shot LLM inference
+- Predicts sequence-level inhibition efficacy
+- Generates evaluation metrics and candidate scores
+- Outputs screening results in structured JSON/CSV format
+
+This enables rapid triaging of candidate ASOs for downstream experimental validation workflows.
+
+## Inference on Novel ASO Candidates
+
+This repository supports inference on previously unseen ASO sequences without retraining.
+
+## Example Usage
+
+python inference/predict.py \
+  --sequence "GCACAGAGTCGTAGCTGGCG" \
+  --target "RAF1 mRNA" \
+  --model llama2 \
+  --mode fewshot \
+  --output results.json
+
+## Sample Output
+
+{
+  "predicted_efficacy": 0.93,
+  "confidence": 0.88,
+  "recommended": true
+}
+
+Predicted scores can be used to prioritize ASO candidates prior to laboratory validation.
 
 ## Workflow
 
@@ -71,6 +118,76 @@ Few-shot prompting provides the model with a **small number of example sequences
 
 > Across all pipelines, few-shot prompting consistently improves model performance by providing **task-specific context**, whereas zero-shot is faster and requires no prior labeled data.
 
+## Repository Structure
+
+data/              Dataset loaders and preprocessing  
+models/            Model interfaces  
+prompts/           Prompt templates  
+training/          Cross-validation logic  
+eval/              Metrics and evaluation  
+inference/         Candidate screening pipeline  
+reports/           Generated plots and CSV outputs  
+
+## Dependencies
+
+- Python 3.8+
+- PyTorch / TensorFlow
+- bioctfl (for ASO sequence processing)
+- pandas, numpy, matplotlib, seaborn
+- Jupyter Notebook
+
+Optional:
+
+- GPU support for faster inference
+- Docker for containerized deployment
+
+## Environment Setup
+
+1. Clone repository
+
+git clone https://github.com/asundar0128/aso-llm-optimization.git
+cd aso-llm-optimization
+
+2. Install dependencies
+
+pip install -r requirements.txt
+
+## Example Output
+
+- Predicted ASO inhibition efficacy scores
+- Zero-shot vs Few-shot performance comparison
+- Candidate prioritization reports
+- Evaluation logs for regression and classification accuracy
+
+## Future Work
+
+- Chain-of-Thought prompting for sequence reasoning
+- Scaling few-shot context size
+- Integration with experimental ASO validation pipelines
+- Evaluation on additional transformer-based models
+
+## System Architecture
+
+## Core Methodology
+
+1. **Background Research**
+   - Conducted a comprehensive evaluation of Neural Transformer architectures for efficiency and accuracy in gene therapy and drug discovery pipelines.
+   - Surveyed relevant bioinformatics and ASO research literature to guide architecture selection.
+
+2. **Model Selection**
+   - Models evaluated: **LlaSMol, T0pp, Mistral-7B**.
+   - Models used in practice: **LLaMA2, GPT-3.5-Turbo, Galactica-6.7B** for their superior performance in biological sequence reasoning and ASO optimization tasks.
+
+3. **Optimization**
+   - Achieved significant improvements in **R²** and **RMSE** scores through **zero-shot** and **few-shot prompting** strategies.
+   - Optimizations guided by relevant bioinformatics principles to ensure predictive and experimental utility.
+
+## Performance & Evaluation
+
+- **Efficacy Tracking:** AUC, ROC, MCC (Matthews Correlation Coefficient) to assess classification performance.
+- **Regression Accuracy:** RMSE, R² for sequence-level prediction accuracy.
+- Results are documented in a formal publication with **multi-metric evaluation** for robust performance benchmarking.
+
 ## Sample Prompts and Inhibition Efficacy Scores
 
 Entry 12
@@ -98,52 +215,19 @@ Prompt: [DNA_START]GAATTTTACGGACCC[DNA_END]
 Target gene: Homo sapiens VCAM1, transcript variant 1, mRNA
 Inhibition efficacy score: 0.993
 
-## Dependencies
+## Evaluation Metrics
 
-- Python 3.8+
-- PyTorch / TensorFlow
-- bioctfl (for ASO sequence processing)
-- pandas, numpy, matplotlib, seaborn
-- Jupyter Notebook
+Model performance is evaluated using:
 
-Optional:
+- RMSE
+- R²
+- ROC-AUC
+- Matthews Correlation Coefficient (MCC)
 
-- GPU support for faster inference
-- Docker for containerized deployment
+Both regression and classification performance are reported in the associated preprint.
 
-## Quickstart
+## References
 
-1. Clone the repository:
-
-git clone https://github.com/asundar0128/aso-llm-optimization.git
-cd aso-llm-optimization
-
-2. Install dependencies
-
-pip install -r requirements.txt
-
-3. Run the main Python script
-
-python FinalIndependentStudyCode.py
-
-## Example Output
-
-- Optimized ASO sequences with predicted efficacy scores.
-- Zero-shot and few-shot comparison plots.
-- CSV files containing valid and invalid ASO predictions.
-- Logs and evaluation metrics for regression and classification accuracy.
-
-## Future Scope
-
-- Chain-of-Thought (CoT) Prompting to enhance reasoning capabilities.
-- Scaling Few-Shot Learning: increase k from 3 → 8, 11, 15, 25 to evaluate saturation in context-based learning.
-- Holistic GPT Evaluation: compare newer GPT iterations for regression accuracy across ASO sequences.
-- Integration with experimental ASO validation pipelines.
-
-## References 
-
-- LLaMA2: https://arxiv.org/abs/2307.09288
-- GPT-3.5-Turbo: https://platform.openai.com/docs/models/gpt-3-5
+- LLaMA-2: https://arxiv.org/abs/2307.09288
 - Galactica: https://arxiv.org/abs/2211.09085
-- PFRED ASO Optimizer: https://www.ebi.ac.uk/seqdb/pfred
-- Relevant bioinformatics and ASO research literature
+- PFRED: https://www.ebi.ac.uk/seqdb/pfred
