@@ -37,10 +37,26 @@ This repository features research on optimizing **Antisense Oligonucleotide (ASO
 
 ## Workflow Diagram
 
-![ASO Workflow](openaso1_llama27b_fewshot_plot.png)
+<img width="1024" height="1536" alt="ChatGPT Image Feb 22, 2026, 08_51_49 PM" src="https://github.com/user-attachments/assets/185b0f97-dd52-470d-a5bf-a867bdaa6bac" />
 
 **Figure 3:** High-level workflow showing the LLM-based ASO optimization loop, including sequence input, inference, evaluation, and output generation.
 
+<img width="1024" height="1536" alt="ChatGPT Image Feb 22, 2026, 09_54_10 PM" src="https://github.com/user-attachments/assets/6892550b-efc4-4e62-8528-20cb92395603" />
+
+## Zero-Shot & Few-Shot Examples
+
+Below are example outputs demonstrating **zero-shot** and **few-shot** inference for different ASO optimization pipelines using Galactica, LLaMA, and GPT models.
+
+| Model / Pipeline | PFRED | OpenASO | ASOptimizer |
+|-----------------|-------|---------|-------------|
+| **Galactica**   | ![Galactica PFRED Zero-Shot](images/galactica_pfred_zero.png) <br> ![Galactica PFRED Few-Shot](images/galactica_pfred_few.png) | ![Galactica OpenASO Zero-Shot](images/galactica_openaso_zero.png) <br> ![Galactica OpenASO Few-Shot](images/galactica_openaso_few.png) | ![Galactica ASOptimizer Zero-Shot](images/galactica_asoptimizer_zero.png) <br> ![Galactica ASOptimizer Few-Shot](images/galactica_asoptimizer_few.png) |
+| **LLaMA**       | ![LLaMA PFRED Zero-Shot](images/llama_pfred_zero.png) <br> ![LLaMA PFRED Few-Shot](images/llama_pfred_few.png) | ![LLaMA OpenASO Zero-Shot](images/llama_openaso_zero.png) <br> ![LLaMA OpenASO Few-Shot](images/llama_openaso_few.png) | ![LLaMA ASOptimizer Zero-Shot](images/llama_asoptimizer_zero.png) <br> ![LLaMA ASOptimizer Few-Shot](images/llama_asoptimizer_few.png) |
+| **GPT**         | ![GPT PFRED Zero-Shot](images/gpt_pfred_zero.png) <br> ![GPT PFRED Few-Shot](images/gpt_pfred_few.png) | ![GPT OpenASO Zero-Shot](images/gpt_openaso_zero.png) <br> ![GPT OpenASO Few-Shot](images/gpt_openaso_few.png) | ![GPT ASOptimizer Zero-Shot](images/gpt_asoptimizer_zero.png) <br> ![GPT ASOptimizer Few-Shot](images/gpt_asoptimizer_few.png) |
+
+> **Notes:**  
+> - Replace `images/*.png` with actual screenshots from your experiments.  
+> - Each cell shows **zero-shot** on top, **few-shot** on bottom.  
+> - This table allows quick visual comparison across models and pipelines.  
 
 ## Dependencies
 
