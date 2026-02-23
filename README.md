@@ -43,20 +43,97 @@ This repository features research on optimizing **Antisense Oligonucleotide (ASO
 
 <img width="1024" height="1536" alt="ChatGPT Image Feb 22, 2026, 09_54_10 PM" src="https://github.com/user-attachments/assets/6892550b-efc4-4e62-8528-20cb92395603" />
 
-## Zero-Shot & Few-Shot Examples
+## ASO Optimization: Zero-Shot & Few-Shot Prompting
 
-Below are example outputs demonstrating **zero-shot** and **few-shot** inference for different ASO optimization pipelines using Galactica, LLaMA, and GPT models.
+After the main workflow, we explore how different prompting strategies affect ASO prediction and optimization.
 
-| Model / Pipeline | PFRED | OpenASO | ASOptimizer |
-|-----------------|-------|---------|-------------|
-| **Galactica**   | ![Galactica PFRED Zero-Shot](images/galactica_pfred_zero.png) <br> ![Galactica PFRED Few-Shot](images/galactica_pfred_few.png) | ![Galactica OpenASO Zero-Shot](images/galactica_openaso_zero.png) <br> ![Galactica OpenASO Few-Shot](images/galactica_openaso_few.png) | ![Galactica ASOptimizer Zero-Shot](images/galactica_asoptimizer_zero.png) <br> ![Galactica ASOptimizer Few-Shot](images/galactica_asoptimizer_few.png) |
-| **LLaMA**       | ![LLaMA PFRED Zero-Shot](images/llama_pfred_zero.png) <br> ![LLaMA PFRED Few-Shot](images/llama_pfred_few.png) | ![LLaMA OpenASO Zero-Shot](images/llama_openaso_zero.png) <br> ![LLaMA OpenASO Few-Shot](images/llama_openaso_few.png) | ![LLaMA ASOptimizer Zero-Shot](images/llama_asoptimizer_zero.png) <br> ![LLaMA ASOptimizer Few-Shot](images/llama_asoptimizer_few.png) |
-| **GPT**         | ![GPT PFRED Zero-Shot](images/gpt_pfred_zero.png) <br> ![GPT PFRED Few-Shot](images/gpt_pfred_few.png) | ![GPT OpenASO Zero-Shot](images/gpt_openaso_zero.png) <br> ![GPT OpenASO Few-Shot](images/gpt_openaso_few.png) | ![GPT ASOptimizer Zero-Shot](images/gpt_asoptimizer_zero.png) <br> ![GPT ASOptimizer Few-Shot](images/gpt_asoptimizer_few.png) |
+## Zero-Shot & Few-Shot Prompting
 
-> **Notes:**  
-> - Replace `images/*.png` with actual screenshots from your experiments.  
-> - Each cell shows **zero-shot** on top, **few-shot** on bottom.  
-> - This table allows quick visual comparison across models and pipelines.  
+**Zero-Shot Prompting**  
+In zero-shot prompting, the model predicts ASO efficacy or generates optimized sequences **without prior examples**. The model relies solely on its pre-trained knowledge to make predictions. This is useful for rapid evaluation when labeled data is limited.
+
+**Few-Shot Prompting**  
+Few-shot prompting provides the model with a **small number of example sequences** and their known efficacy scores before asking it to predict new ASOs. By giving contextual examples, the model can better understand the task and produce more accurate predictions. Few-shot prompting often results in higher-quality ASO candidates, especially for specialized domains.
+
+## Pipeline-Specific Behavior
+
+**PFRED**  
+- *Zero-Shot:* Quickly predicts ASO efficacy from input sequences but may miss nuanced sequence-context relationships.  
+- *Few-Shot:* Leverages a few example sequences to improve prediction accuracy, capturing subtle patterns in nucleotide arrangements.
+
+**OpenASO**  
+- *Zero-Shot:* Provides baseline sequence optimization without prior examples; suitable for rapid screening.  
+- *Few-Shot:* Uses context from example sequences to enhance optimization, often yielding higher predicted efficacy and more reliable candidate ASOs.
+
+**ASOptimizer**  
+- *Zero-Shot:* Generates initial ASO predictions directly from SMILES or RNA sequences; may produce broader variability.  
+- *Few-Shot:* Incorporates sample ASO-efficacy mappings to refine predictions, reducing error and improving alignment with experimental expectations.
+
+> Across all pipelines, few-shot prompting consistently improves model performance by providing **task-specific context**, whereas zero-shot is faster and requires no prior labeled data.
+
+## Visual Examples
+
+Below are diagrams illustrating **zero-shot vs few-shot predictions** for each pipeline using Galactica, LLaMA, and GPT models.
+
+## PFRED
+
+**Galactica**  
+**Zero-Shot**  
+![Galactica PFRED Zero-Shot](images/galactica_pfred_zero.png)  
+**Few-Shot**  
+![Galactica PFRED Few-Shot](images/galactica_pfred_few.png)  
+
+**LLaMA**  
+**Zero-Shot**  
+![LLaMA PFRED Zero-Shot](images/llama_pfred_zero.png)  
+**Few-Shot**  
+![LLaMA PFRED Few-Shot](images/llama_pfred_few.png)  
+
+**GPT**  
+**Zero-Shot**  
+![GPT PFRED Zero-Shot](images/gpt_pfred_zero.png)  
+**Few-Shot**  
+![GPT PFRED Few-Shot](images/gpt_pfred_few.png)  
+
+## OpenASO
+
+**Galactica**  
+**Zero-Shot**  
+![Galactica OpenASO Zero-Shot](images/galactica_openaso_zero.png)  
+**Few-Shot**  
+![Galactica OpenASO Few-Shot](images/galactica_openaso_few.png)  
+
+**LLaMA**  
+**Zero-Shot**  
+![LLaMA OpenASO Zero-Shot](images/llama_openaso_zero.png)  
+**Few-Shot**  
+![LLaMA OpenASO Few-Shot](images/llama_openaso_few.png)  
+
+**GPT**  
+**Zero-Shot**  
+![GPT OpenASO Zero-Shot](images/gpt_openaso_zero.png)  
+**Few-Shot**  
+![GPT OpenASO Few-Shot](images/gpt_openaso_few.png)  
+
+#### ASOptimizer
+
+**Galactica**  
+**Zero-Shot**  
+![Galactica ASOptimizer Zero-Shot](images/galactica_asoptimizer_zero.png)  
+**Few-Shot**  
+![Galactica ASOptimizer Few-Shot](images/galactica_asoptimizer_few.png)  
+
+**LLaMA**  
+**Zero-Shot**  
+![LLaMA ASOptimizer Zero-Shot](images/llama_asoptimizer_zero.png)  
+**Few-Shot**  
+![LLaMA ASOptimizer Few-Shot](images/llama_asoptimizer_few.png)  
+
+**GPT**  
+**Zero-Shot**  
+![GPT ASOptimizer Zero-Shot](images/gpt_asoptimizer_zero.png)  
+**Few-Shot**  
+![GPT ASOptimizer Few-Shot](images/gpt_asoptimizer_few.png)  
 
 ## Dependencies
 
